@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 
 use Hash;
-use Session;
+
+use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,13 +20,13 @@ class CrudUserController extends Controller
     
  
   
-    public function listUser()
-    {
-        if(Auth::check()){
-            $users = User::all();
-            return view('crud_user.list', ['users' => $users]);
-        }
+    /**
+     * Sign out
+     */
+    public function signOut() {
+        Session::flush();
+        Auth::logout();
 
-        return redirect("login")->withSuccess('You are not allowed to access');
-    } 
+        return Redirect('login');
+    }
 }

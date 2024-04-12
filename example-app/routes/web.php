@@ -18,7 +18,7 @@ use App\Http\Controllers\CrudUserController;
 
 
 
-Route::get('list', [CrudUserController::class, 'listUser'])->name('user.list');
+Route::get('signout', [CrudUserController::class, 'signOut'])->name('signout');
 
 Route::get('/', function () {
     return view('welcome');
