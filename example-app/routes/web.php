@@ -26,6 +26,8 @@ Route::get('dashboard', [CrudUserController::class, 'dashboard']);
 
 Route::get('read', [CrudUserController::class, 'readUser'])->name('user.readUser');
 
+Route::get('delete', [CrudUserController::class, 'deleteUser'])->name('user.deleteUser');
+
 Route::get('/', function () {
     return view('welcome');
 });

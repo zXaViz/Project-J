@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/update
 use Hash;
@@ -46,12 +47,15 @@ class CrudUserController extends Controller
 
         return redirect("login");
 =======
+=======
+>>>>>>> origin/delete
 use Illuminate\Http\Request;
 use App\Models\User;
 
 class CrudUserController extends Controller
 {
     /**
+<<<<<<< HEAD
      * View user detail page
      */
     public function readUser(Request $request) {
@@ -101,3 +105,14 @@ class CrudUserController extends Controller
    
 }
 >>>>>>> origin/update
+=======
+     * Delete user by id
+     */
+    public function deleteUser(Request $request) {
+        $user_id = $request->get('id');
+        $user = User::destroy($user_id);
+
+        return redirect("list")->withSuccess('You have signed-in');
+    }
+}
+>>>>>>> origin/delete
