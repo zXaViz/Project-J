@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/update
+
 use Hash;
 use Session;
 use App\Models\User;
@@ -18,101 +14,18 @@ use Illuminate\Support\Facades\Auth;
  */
 class CrudUserController extends Controller
 {
-<<<<<<< HEAD
-    /**
-     * Registration page
-     */
-    public function createUser()
+
+
+    
+ 
+  
+    public function listUser()
     {
-        return view('crud_user.create');
-    }
+        if(Auth::check()){
+            $users = User::all();
+            return view('crud_user.list', ['users' => $users]);
+        }
 
-    /**
-     * User submit form register
-     */
-    public function postUser(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-        ]);
-
-        $data = $request->all();
-        $check = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password'])
-        ]);
-
-        return redirect("login");
-=======
-=======
->>>>>>> origin/delete
-use Illuminate\Http\Request;
-use App\Models\User;
-
-class CrudUserController extends Controller
-{
-    /**
-<<<<<<< HEAD
-     * View user detail page
-     */
-    public function readUser(Request $request) {
-        $user_id = $request->get('id');
-        $user = User::find($user_id);
-
-        return view('crud_user.read', ['user' => $user]);
->>>>>>> origin/read
-    }
+        return redirect("login")->withSuccess('You are not allowed to access');
+    } 
 }
-=======
-
-
-    /**
-     * Form update user page
-     */
-    public function updateUser(Request $request)
-    {
-        $user_id = $request->get('id');
-        $user = User::find($user_id);
-
-        return view('crud_user.update', ['user' => $user]);
-    }
-
-    /**
-     * Submit form update user
-     */
-    public function postUpdateUser(Request $request)
-    {
-        $input = $request->all();
-
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,id,'.$input['id'],
-            'password' => 'required|min:6',
-        ]);
-
-       $user = User::find($input['id']);
-       $user->name = $input['name'];
-       $user->email = $input['email'];
-       $user->password = $input['password'];
-       $user->save();
-
-        return redirect("list")->withSuccess('You have signed-in');
-    }
-
-   
-}
->>>>>>> origin/update
-=======
-     * Delete user by id
-     */
-    public function deleteUser(Request $request) {
-        $user_id = $request->get('id');
-        $user = User::destroy($user_id);
-
-        return redirect("list")->withSuccess('You have signed-in');
-    }
-}
->>>>>>> origin/delete
