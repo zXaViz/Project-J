@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('dashboard', [CrudUserController::class, 'dashboard']);
+
+Route::get('login', [CrudUserController::class, 'login'])->name('login');
+Route::post('login', [CrudUserController::class, 'authUser'])->name('user.authUser');
+
 Route::get('/', function () {
     return view('welcome');
 });
