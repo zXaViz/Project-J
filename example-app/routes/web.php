@@ -22,6 +22,10 @@ Route::get('dashboard', [CrudUserController::class, 'dashboard']);
 Route::get('login', [CrudUserController::class, 'login'])->name('login');
 Route::post('login', [CrudUserController::class, 'authUser'])->name('user.authUser');
 
+Route::get('dashboard', [CrudUserController::class, 'dashboard']);
+
+Route::get('read', [CrudUserController::class, 'readUser'])->name('user.readUser');
+
 Route::get('/', function () {
     return view('welcome');
 });
