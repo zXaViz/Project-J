@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/update
 use Hash;
 use Session;
 use App\Models\User;
@@ -14,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
  */
 class CrudUserController extends Controller
 {
+<<<<<<< HEAD
     /**
      * Registration page
      */
@@ -58,3 +62,42 @@ class CrudUserController extends Controller
 >>>>>>> origin/read
     }
 }
+=======
+
+
+    /**
+     * Form update user page
+     */
+    public function updateUser(Request $request)
+    {
+        $user_id = $request->get('id');
+        $user = User::find($user_id);
+
+        return view('crud_user.update', ['user' => $user]);
+    }
+
+    /**
+     * Submit form update user
+     */
+    public function postUpdateUser(Request $request)
+    {
+        $input = $request->all();
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,id,'.$input['id'],
+            'password' => 'required|min:6',
+        ]);
+
+       $user = User::find($input['id']);
+       $user->name = $input['name'];
+       $user->email = $input['email'];
+       $user->password = $input['password'];
+       $user->save();
+
+        return redirect("list")->withSuccess('You have signed-in');
+    }
+
+   
+}
+>>>>>>> origin/update

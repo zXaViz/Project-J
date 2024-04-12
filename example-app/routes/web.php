@@ -29,3 +29,5 @@ Route::get('read', [CrudUserController::class, 'readUser'])->name('user.readUser
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('update', [CrudUserController::class, 'updateUser'])->name('user.updateUser');
+Route::post('update', [CrudUserController::class, 'postUpdateUser'])->name('user.postUpdateUser');
